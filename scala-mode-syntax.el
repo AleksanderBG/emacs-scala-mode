@@ -95,7 +95,8 @@
           "\\|" scala-syntax:string-escape-re  "\\)"))
 (defconst scala-syntax:oneLineStringLiteral-re (concat "\\(\"\\)" scala-syntax:stringElement-re "*\\(\"\\)"))
 (defconst scala-syntax:multiLineStringLiteral-start-re
-  "\\(\"\\)\"\"\\(\"?\"?[^\"]\\)*")
+  "\\(\"\\)\"\"\\(\"?\"?[^\"]\\)*"
+  )
 (defconst scala-syntax:multiLineStringLiteral-end-re
   "\"\"+\\(\"\\)")
 (defconst scala-syntax:multiLineStringLiteral-re
@@ -284,10 +285,12 @@
 
 (defconst scala-syntax:other-keywords-unsafe-re
   (regexp-opt '("abstract" "case" "catch" "class" "def" "do" "else" "extends"
-                "final" "finally" "for" "forSome" "if" "implicit" "import"
-                "lazy" "match" "new" "object" "override" "package" "private"
-                "protected" "return" "sealed" "throw" "trait" "try" "type"
-                "val" "var" "while" "with" "yield" "inline") 'words))
+                "enum" "end" "export" "final" "finally" "for" "forSome" "if"
+                "inline" "implicit" "import" "lazy" "match" "new" "object"
+                "override" "package" "private" "protected" "return" "sealed"
+                "throw" "trait" "try" "type" "then" "val" "var" "while" "with"
+                "yield"
+                ) 'words))
 
 (defconst scala-syntax:other-keywords-re
   (concat "\\(^\\|[^`'_]\\)\\(" scala-syntax:other-keywords-unsafe-re "\\)"))

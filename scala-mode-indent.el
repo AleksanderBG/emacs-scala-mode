@@ -526,7 +526,7 @@ point or nil if the point is not in a enumerator element > 1."
 condition (or generators in the case of 'for') in parentheses.")
 
 (defconst scala-indent:control-keywords-other-re
-  (regexp-opt '("else" "do" "yield" "try" "finally" "catch") 'words)
+  (regexp-opt '("then" "else" "do" "yield" "try" "finally" "catch") 'words)
   "Other flow control keywords (not followed by parentheses)")
 
 (defconst scala-indent:control-keywords-re
@@ -736,6 +736,7 @@ nothing was applied."
              (anchor (funcall rule-statement point)))
         (if anchor
             (progn
+              ;; (message "indenting acording to %s at %d for pos %d for point %s" rule-statement anchor pos point)
               (if scala-mode:debug-messages
                   (message "indenting acording to %s at %d for pos %d for point %s" rule-statement anchor pos point))
               (when (/= anchor (point))
@@ -759,8 +760,7 @@ cannot be determined."
          (scala-indent:goto-list-anchor scala-indent:resolve-list-step)
          (scala-indent:goto-body-anchor scala-indent:resolve-body-step)
          (scala-indent:goto-run-on-anchor scala-indent:resolve-run-on-step)
-         (scala-indent:goto-block-anchor scala-indent:resolve-block-step)
-     )
+         (scala-indent:goto-block-anchor scala-indent:resolve-block-step))
        point)
       0))
 
@@ -856,7 +856,7 @@ comment is outside the comment region. "
 
 (defconst scala-indent:indent-on-words-re
   (concat "^\\s *"
-          (regexp-opt '("catch" "case" "else" "finally" "yield") 'words)))
+          (regexp-opt '("then" "catch" "case" "else" "finally" "yield") 'words)))
 
 (defun scala-indent:indent-on-special-words ()
   "This function is meant to be used with post-self-insert-hook.
