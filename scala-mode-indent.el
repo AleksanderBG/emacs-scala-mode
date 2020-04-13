@@ -544,7 +544,14 @@ keyword, or nil if not."
     (scala-syntax:beginning-of-code-line)
     (or (scala-syntax:looking-back-token scala-syntax:body-start-re 3)
         (let ((case-fold-search nil))
-          (scala-syntax:looking-back-token scala-indent:control-keywords-other-re))
+          (let ((kw-pos
+                 (scala-syntax:looking-back-token scala-indent:control-keywords-other-re)))
+            (when kw-pos
+              ;; TODO *DEFINITELY* wrong, but works for me
+              (goto-char kw-pos)
+              (scala-syntax:beginning-of-code-line)
+              (point))
+            ))
         (progn
           ;; if, else if
           (when (scala-syntax:looking-back-token ")" 1)
@@ -741,11 +748,13 @@ nothing was applied."
                   (message "indenting acording to %s at %d for pos %d for point %s" rule-statement anchor pos point))
               (when (/= anchor (point))
                 (error (format "Assertion error: anchor=%d, point=%d" anchor (point))))
-              (+ (current-column)
-                 (save-excursion
-                   (if (functionp indent-statement)
-                       (funcall indent-statement pos anchor)
-                     (eval indent-statement)))))
+              (let ((cc (current-column))
+                    (ai (save-excursion
+                          (if (functionp indent-statement)
+                              (funcall indent-statement pos anchor)
+                            (eval indent-statement)))))
+               ;; (message "indent stmt %s cc: %d ai %d" indent-statement cc ai)
+                (+ cc ai)))
           (scala-indent:apply-indent-rules (cdr rule-indents)))))))
 
 (defun scala-indent:calculate-indent-for-line (&optional point)

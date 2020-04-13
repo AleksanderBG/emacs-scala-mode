@@ -289,7 +289,7 @@
                 "inline" "implicit" "import" "lazy" "match" "new" "object"
                 "override" "package" "private" "protected" "return" "sealed"
                 "throw" "trait" "try" "type" "then" "val" "var" "while" "with"
-                "yield"
+                "using" "yield"
                 ) 'words))
 
 (defconst scala-syntax:other-keywords-re
