@@ -288,8 +288,8 @@
                 "enum" "end" "export" "final" "finally" "for" "forSome" "if"
                 "inline" "implicit" "import" "lazy" "match" "new" "object"
                 "override" "package" "private" "protected" "return" "sealed"
-                "throw" "trait" "try" "type" "then" "val" "var" "while" "with"
-                "using" "yield"
+                "given" "throw" "trait" "try" "type" "then" "val" "var" "while"
+                "with" "using" "yield"
                 ) 'words))
 
 (defconst scala-syntax:other-keywords-re
