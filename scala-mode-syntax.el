@@ -100,8 +100,11 @@
 (defconst scala-syntax:multiLineStringLiteral-end-re
   "\"\"+\\(\"\\)")
 (defconst scala-syntax:multiLineStringLiteral-re
-  (concat "\\(\"\\)\"\"\\(.\\)*?"
-          scala-syntax:multiLineStringLiteral-end-re))
+  (concat
+   ;; lazy regexp to match multi-line string beginning
+   ;; (note that it's useless w/o being paired with an end regexp)
+   "\\(\"\\)\"\"\\(.\\)*?"
+   scala-syntax:multiLineStringLiteral-end-re))
 (defconst scala-syntax:stringLiteral-re
   (concat "\\(" scala-syntax:multiLineStringLiteral-re
           "\\|" scala-syntax:oneLineStringLiteral-re "\\)" ))
