@@ -288,9 +288,9 @@
 
 (defconst scala-syntax:other-keywords-unsafe-re
   (regexp-opt '("abstract" "case" "catch" "class" "def" "do" "else" "extends"
-                "enum" "end" "export" "final" "finally" "for" "forSome" "if"
-                "inline" "implicit" "import" "lazy" "match" "new" "object"
-                "override" "package" "private" "protected" "return" "sealed"
+                "extension" "enum" "end" "export" "final" "finally" "for" "forSome"
+                "if" "inline" "implicit" "import" "lazy" "match" "new" "object"
+                "opaque" "override" "package" "private" "protected" "return" "sealed"
                 "given" "throw" "trait" "try" "type" "then" "val" "var" "while"
                 "with" "using" "yield"
                 ) 'words))
