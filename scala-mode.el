@@ -19,6 +19,7 @@
 (require 'scala-mode-map)
 (require 'scala-mode-imenu)
 (require 'scala-mode-prettify-symbols)
+(require 'bespoke-scala-mode)
 
 (defvar fixup-whitespace) ;; for compilation
 (defvar delete-indentation) ;; for compilation
@@ -175,8 +176,8 @@ When started, runs `scala-mode-hook'.
 ;;;###autoload
 (progn
   (add-to-list 'auto-mode-alist
-               '("\\.\\(scala\\|sbt\\)\\'" . scala-mode))
-  (modify-coding-system-alist 'file "\\.\\(scala\\|sbt\\)\\'" 'utf-8))
+               '("\\.\\(scala\\|sbt\\|sc\\)\\'" . scala-mode))
+  (modify-coding-system-alist 'file "\\.\\(scala\\|sbt\\|sc\\)\\'" 'utf-8))
 
 (provide 'scala-mode)
 ;;; scala-mode.el ends here
