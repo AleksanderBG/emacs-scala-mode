@@ -30,6 +30,7 @@
       (let ((adjustment
              (if (looking-back (rx (or "[" "{" "("
                                        "=" "=>" "=>>" "<-"
+                                       ":"
                                        )))
                  +1
                (if (and (looking-back (rx word-boundary
