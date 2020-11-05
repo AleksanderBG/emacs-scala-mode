@@ -287,7 +287,7 @@
   (concat "\\(^\\|[^`'_]\\)\\(" scala-syntax:value-keywords-unsafe-re "\\)"))
 
 (defconst scala-syntax:other-keywords-unsafe-re
-  (regexp-opt '("abstract" "case" "catch" "class" "def" "do" "else" "extends"
+  (regexp-opt '("abstract" "case" "catch" "class" "def" "derives" "do" "else" "extends"
                 "extension" "enum" "end" "export" "final" "finally" "for" "forSome"
                 "if" "inline" "implicit" "import" "lazy" "match" "new" "object"
                 "opaque" "override" "package" "private" "protected" "return" "sealed"

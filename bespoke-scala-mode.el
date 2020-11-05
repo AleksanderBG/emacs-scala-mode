@@ -17,12 +17,16 @@
   (add-hook 'post-self-insert-hook #'bespoke-scala/fix-brace nil 'local)
   (electric-indent-local-mode 0))
 
+(defmacro bespoke-scala//on-last-nonempty-line (&rest thunk)
+  `(save-excursion
+     (forward-line -1)
+     (while (and (not (bobp))
+                 (looking-at "^ *$"))
+       (forward-line -1))
+     (progn ,@thunk)))
+
 (defun bespoke-scala/compute-ws-indent ()
-  (save-excursion
-    (forward-line -1)
-    (while (and (not (bobp))
-                (looking-at "^ *$"))
-      (forward-line -1))
+  (bespoke-scala//on-last-nonempty-line
     (back-to-indentation)
     (let ((ci (current-column)))
       (end-of-line)
@@ -59,7 +63,12 @@
       (beginning-of-line)
       (delete-horizontal-space)
       ;; TODO match indent
-      (when (looking-at (rx (or "]" "}" ")" "case" "end")))
+      (when (or (looking-at (rx (or "]" "}" ")" "end")))
+                (and (looking-at "case")
+                     (bespoke-scala//on-last-nonempty-line
+                       (end-of-line)
+                       (skip-chars-backward "\s")
+                       (not (looking-back (rx (or "{" "match")))))))
         (setq need (- need scala-indent:step)))
       (if (and (eql (line-number-at-pos) bespoke-scala//ws-indent-last-line)
                (eq last-command bespoke-scala//ws-indent-last-command))
