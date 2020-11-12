@@ -71,7 +71,7 @@
                             (progn
                               (end-of-line)
                               (skip-chars-backward "\s")
-                              (not (looking-back (rx (or "{" "match")))))))))
+                              (not (looking-back (rx (or "{" "match" ":")))))))))
         (setq need (- need scala-indent:step)))
       (if (and (eql (line-number-at-pos) bespoke-scala//ws-indent-last-line)
                (eq last-command bespoke-scala//ws-indent-last-command))
