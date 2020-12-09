@@ -100,7 +100,7 @@
       ;; TODO match indent
       (when (and (not (or (nth 3 ppss)
                           (nth 4 ppss)))
-                 (or (looking-at (rx (or "]" "}" ")" "end")))
+                 (or (looking-at (rx (or "]" "}" ")" "end" "else")))
                      (and (looking-at "case")
                           (bespoke-scala//on-last-nonempty-line
                            (back-to-indentation)
