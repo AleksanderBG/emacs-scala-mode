@@ -14,6 +14,7 @@
   (setq bespoke-scala//fix-brace-last-key (elt (this-command-keys-vector) 0)))
 
 (defun bespoke-scala/init ()
+  (setq imenu-create-index-function (default-value 'imenu-create-index-function))
   (add-hook 'post-self-insert-hook #'bespoke-scala/fix-brace nil 'local)
   (electric-indent-local-mode 0))
 
